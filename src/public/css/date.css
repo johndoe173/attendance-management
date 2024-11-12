@@ -1,0 +1,79 @@
+.date-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.date-nav a {
+    border: solid 1px #007bff;
+    text-decoration: none;
+    font-size: 20px;
+    color: #007bff;
+    background-color: #fff;
+    padding: 0.1em 0.5em;
+    margin: 15px 20px;
+}
+
+.date-nav span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #ddd;
+}
+
+th {
+    color: #000000;
+}
+
+p {
+    font-size: 18px;
+    text-align: center;
+    margin: 20px 0;
+    color: #333;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.pagination .page-item {
+    margin: 0 5px;
+}
+
+.pagination .page-link {
+    padding: 8px 12px;
+    color: #007bff;
+    text-decoration: none;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+}
