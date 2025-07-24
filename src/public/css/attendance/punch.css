@@ -1,0 +1,61 @@
+.punch-container {
+    text-align: center;
+    margin-top: 80px;
+}
+
+.status-label {
+    margin-bottom: 10px;
+}
+
+.status-tag {
+    display: inline-block;
+    background-color: #e0e0e0;
+    border-radius: 12px;
+    padding: 5px 12px;
+    font-size: 12px;
+    color: #333;
+}
+
+.punch-date {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.punch-time {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.punch-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+}
+
+.btn-black {
+    background-color: #000;
+    color: #fff;
+}
+
+.btn-white {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #ccc;
+}
+
+.thanks {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}

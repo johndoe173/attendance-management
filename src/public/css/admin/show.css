@@ -1,0 +1,75 @@
+body {
+    background-color: #f2f2f5;
+}
+
+.attendance-detail-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.page-title {
+    font-size: 20px;
+    font-weight: bold;
+    border-left: 4px solid #111;
+    padding-left: 10px;
+    margin-bottom: 24px;
+}
+
+.attendance-detail-form table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.attendance-detail-form th {
+    text-align: left;
+    padding: 16px;
+    background-color: #f8f8f8;
+    width: 120px;
+    vertical-align: top;
+}
+
+.attendance-detail-form td {
+    padding: 16px;
+}
+
+.attendance-detail-form input[type="time"] {
+    padding: 6px 10px;
+    font-size: 14px;
+    width: 100px;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.attendance-detail-form textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.submit-btn-wrapper {
+    text-align: right;
+}
+
+.submit-btn {
+    padding: 10px 30px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    opacity: 0.9;
+}

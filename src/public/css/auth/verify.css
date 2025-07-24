@@ -1,0 +1,41 @@
+.verify-container {
+    text-align: center;
+    padding: 80px 20px;
+    font-family: sans-serif;
+}
+
+.verify-text {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.verify-btn {
+    background-color: #e0e0e0;
+    border: 1px solid #999;
+    padding: 10px 30px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.verify-btn:hover {
+    background-color: #ccc;
+}
+
+.sent-message {
+    margin-top: 20px;
+    color: green;
+}
+
+.resend-link {
+    margin-top: 30px;
+}
+
+.link-style {
+    background: none;
+    border: none;
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+}

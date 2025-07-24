@@ -1,0 +1,95 @@
+body {
+    background-color: #f2f2f5;
+    /* グレー背景 */
+}
+
+.admin-attendance-wrapper {
+    padding-top: 40px;
+    background-color: #f2f2f5;
+}
+
+.admin-attendance-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.date-selector {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f7f7f7;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+}
+
+.calendar-input {
+    font-size: 14px;
+    border: none;
+    background: transparent;
+    padding: 6px 0;
+    outline: none;
+    text-align: center;
+    appearance: none;
+}
+
+.calendar-input::-webkit-inner-spin-button,
+.calendar-input::-webkit-calendar-picker-indicator {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.date-nav a {
+    color: #333;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.logout-link {
+    background-color: #000;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.logout-link:hover {
+    opacity: 0.85;
+}
+
+.admin-attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 14px;
+}
+
+.admin-attendance-table th,
+.admin-attendance-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e6e6e6;
+    text-align: center;
+}
+
+.admin-attendance-table th {
+    background-color: #fafafa;
+    font-weight: 600;
+    color: #333;
+}
+
+.detail-link {
+    color: #000000;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.detail-link:hover {
+    text-decoration: underline;
+}
