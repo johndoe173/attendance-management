@@ -34,10 +34,12 @@ class StampCorrectionRequest extends FormRequest
     {
         return [
             'requested_start_time.required' => '出勤時間を入力してください',
+            'requested_start_time.date_format' => '出勤時間は HH:MM 形式で入力してください',
             'requested_end_time.required' => '退勤時間を入力してください',
-            'requested_end_time.after' => '出勤時間もしくは退勤時間が不適切な値です',
+            'requested_end_time.date_format' => '退勤時間は HH:MM 形式で入力してください',
+            'requested_end_time.after' => '出勤時間より後の時刻を指定してください',
             'requested_note.required' => '備考を記入してください',
+            'requested_note.string' => '備考には文字列を入力してください',
         ];
     }
-
 }

@@ -68,6 +68,6 @@ class VerificationTest extends TestCase
 
         $this->actingAs($user)
             ->get('/email/verify')
-            ->assertRedirect('/attendance');
+            ->assertRedirect('/attendance/punch');
     }
 }

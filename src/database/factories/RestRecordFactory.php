@@ -14,10 +14,13 @@ class RestRecordFactory extends Factory
      */
     public function definition()
     {
+        $breakStart = $this->faker->time('H:i:s');
+        $breakEnd = date('H:i:s', strtotime($breakStart . ' +30 minutes'));
+
         return [
             'attendance_id' => Attendance::factory(),
-            'break_start' => $this->faker->time('H:i:s'),
-            'break_end' => $this->faker->time('H:i:s'),
+            'break_start' => $breakStart,
+            'break_end' => $breakEnd,
         ];
     }
 

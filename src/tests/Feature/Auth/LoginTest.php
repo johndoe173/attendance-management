@@ -49,8 +49,7 @@ class LoginTest extends TestCase
     {
         $user = User::factory()->create([
             'email' => 'user@example.com',
-            'password' => bcrypt('password123'),
-            'email_verified_at' => now(), // メール認証必須の場合
+            'email_verified_at' => now(), // Fortifyのメール認証を通す
         ]);
 
         $response = $this->post('/login', [
@@ -59,6 +58,7 @@ class LoginTest extends TestCase
         ]);
 
         $this->assertAuthenticatedAs($user);
-        $response->assertRedirect('/attendance'); // ログイン後の遷移先
+        // ✅ ログイン後のリダイレクト先は打刻ページ
+        $response->assertRedirect('/attendance/punch');
     }
 }

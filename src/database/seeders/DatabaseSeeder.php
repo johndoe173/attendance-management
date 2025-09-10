@@ -14,12 +14,12 @@ class DatabaseSeeder extends Seeder
     public function run(): void
 {
     // 管理者アカウント手動作成（オプション）
-    \App\Models\User::factory()->create([
+    \App\Models\Admin::factory()->create([
         'name' => 'Admin User',
         'email' => 'admin@example.com',
         'password' => bcrypt('admin1234'),
-        'role' => 'admin',
     ]);
+
 
     // ユーザー10人分と勤怠・申請・休憩レコードを自動生成
     \App\Models\User::factory(10)->create()->each(function ($user) {

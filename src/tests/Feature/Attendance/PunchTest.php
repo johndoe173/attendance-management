@@ -7,6 +7,8 @@ use App\Models\Attendance;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
 use Tests\TestCase;
+use App\Models\RestRecord;
+
 
 class PunchTest extends TestCase
 {
@@ -83,6 +85,12 @@ class PunchTest extends TestCase
             'start_time' => now()->subHours(6),
         ]);
 
+        // 🔑 未終了の休憩を作成
+        $attendance->restRecords()->create([
+            'break_start' => now()->subHour(),
+            'break_end'   => null,
+        ]);
+
         $this->actingAs($user);
 
         $response = $this->post('/attendance/break_end');
@@ -93,4 +101,5 @@ class PunchTest extends TestCase
             'status' => '出勤中',
         ]);
     }
+
 }

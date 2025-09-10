@@ -27,5 +27,15 @@ class StampCorrectionRequest extends Model
     {
         return $this->belongsTo(Attendance::class);
     }
+
+    const STATUS_PENDING = '承認待ち';
+    const STATUS_APPROVED = '承認済み';
+    const STATUS_REJECTED = '却下';
+
+    public function scopePending($query)
+    {
+        return $query->where('status', self::STATUS_PENDING);
+    }
+
 }
 

@@ -20,7 +20,7 @@
                 <nav>
                     <ul style="display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; align-items: center;">
                         <li><a href="{{ route('attendance.punch') }}" style="color: white; text-decoration: none; line-height: 1;">勤怠</a></li>
-                        <li><a href="{{ route('attendance.index') }}" style="color: white; text-decoration: none; line-height: 1;">勤怠一覧</a></li>
+                        <li><a href="{{ route('attendance.list') }}" style="color: white; text-decoration: none; line-height: 1;">勤怠一覧</a></li>
                         <li><a href="{{ route('stamp_requests.index') }}" style="color: white; text-decoration: none; line-height: 1;">申請</a></li>
                         <li>
                             <form method="POST" action="{{ route('logout') }}" style="display: inline;">

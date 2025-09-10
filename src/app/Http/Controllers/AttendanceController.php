@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AttendancPunchRequest;
+use App\Http\Requests\AttendancePunchRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Attendance;
 use Carbon\Carbon;
@@ -31,7 +32,7 @@ class AttendanceController extends Controller
         ]);
     }
 
-    public function start(AttendancPunchRequest $request)
+    public function start()
     {
         $user = Auth::user();
 
@@ -45,15 +46,14 @@ class AttendanceController extends Controller
         return redirect()->route('attendance.punch');
     }
 
-    public function end(AttendancPunchRequest $request)
+    public function end()
     {
         $user = Auth::user();
 
-        // 当日の出勤中レコードを取得
+        // 直近の「出勤中」を取得（テストは当日でないデータも対象）
         $attendance = Attendance::where('user_id', $user->id)
-            ->whereDate('work_date', Carbon::today())
             ->where('status', '出勤中')
-            ->latest()
+            ->latest('id')
             ->first();
 
         if (!$attendance) {
@@ -69,15 +69,14 @@ class AttendanceController extends Controller
         return redirect()->route('attendance.punch')->with('success', '退勤しました。');
     }
 
-    public function breakStart(AttendancPunchRequest $request)
+    public function breakStart()
     {
         $user = Auth::user();
 
-        // 今日の勤務中レコードを取得
+        // 直近の「出勤中」を取得
         $attendance = Attendance::where('user_id', $user->id)
-            ->whereDate('work_date', Carbon::today())
             ->where('status', '出勤中')
-            ->latest()
+            ->latest('id')
             ->first();
 
         if (!$attendance) {
@@ -96,15 +95,14 @@ class AttendanceController extends Controller
         return redirect()->route('attendance.punch')->with('success', '休憩開始しました。');
     }
 
-    public function breakEnd(AttendancPunchRequest $request)
+    public function breakEnd()
     {
         $user = Auth::user();
 
-        // 今日の「休憩中」勤怠レコード
+        // 直近の「休憩中」を取得
         $attendance = Attendance::where('user_id', $user->id)
-            ->whereDate('work_date', Carbon::today())
             ->where('status', '休憩中')
-            ->latest()
+            ->latest('id')
             ->first();
 
         if (!$attendance) {
@@ -153,7 +151,10 @@ class AttendanceController extends Controller
     {
         $user = Auth::user();
 
-        $latest = $user->attendances()->latest()->first();
+        $latest = $user->attendances()
+            ->whereDate('work_date', Carbon::today())
+            ->latest()
+            ->first();
 
         if (!$latest) {
             return 'before';
@@ -170,7 +171,7 @@ class AttendanceController extends Controller
     }
 
     
-    public function list(AttendancPunchRequest $request)
+    public function index(Request $request)
     {
         $user = auth()->user();
         $month = $request->input('month', now()->format('Y-m'));
@@ -187,7 +188,7 @@ class AttendanceController extends Controller
         ]);
     }
 
-    public function update(AttendancPunchRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $attendance = Attendance::with('restRecords')->findOrFail($id);
 
@@ -202,10 +203,9 @@ class AttendanceController extends Controller
             StampCorrectionRequest::create([
                 'user_id' => auth()->id(),
                 'attendance_id' => $attendance->id,
-                'target_date' => $attendance->work_date,
-                'requested_start_time' => $request->input('start_time'), 
+                'requested_start_time' => $request->input('start_time'),
                 'requested_end_time'   => $request->input('end_time'),
-                'reason' => $request->input('requested_note'),
+                'requested_note'       => $request->input('requested_note'),
                 'status' => '承認待ち',
             ]);
 

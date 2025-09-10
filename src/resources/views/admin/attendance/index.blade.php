@@ -39,12 +39,12 @@
             <tbody>
                 @forelse ($records as $record)
                     <tr>
-                        <td>{{ $record->user->name }}</td>
+                        <td>{{ optional($record->user)->name ?? '—' }}</td>
                         <td>{{ $record->start_time ? \Carbon\Carbon::parse($record->start_time)->format('H:i') : '--:--' }}</td>
                         <td>{{ $record->end_time ? \Carbon\Carbon::parse($record->end_time)->format('H:i') : '--:--' }}</td>
                         <td>{{ $record->break_total ?? '0:00' }}</td>
                         <td>{{ $record->work_duration ?? '0:00' }}</td>
-                        <td><a href="{{ route('admin.attendance.show', ['id' => $record->id]) }}" class="detail-link">詳細</a></td>
+                        <td><a href="{{ route('admin.attendance.show', ['attendance' => $record->id]) }}" class="detail-link">詳細</a></td>
                     </tr>
                 @empty
                     <tr>

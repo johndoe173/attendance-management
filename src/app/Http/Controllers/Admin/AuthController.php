@@ -3,32 +3,47 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AdminLoginRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 class AuthController extends Controller
 {
     public function showLoginForm()
     {
+        if (Auth::guard('admin')->check()) {
+            return redirect()->route('admin.attendance.index');
+        }
         return view('admin.auth.login');
     }
 
-    public function login(AdminLoginRequest $request) 
+    public function login(Request $request): RedirectResponse
     {
-        $credentials = $request->only('email', 'password');
+        // ✅ バリデーション
+        $credentials = $request->validate([
+            'email'    => ['required','email'],
+            'password' => ['required','string'],
+        ]);
 
-        if (Auth::guard('admin')->attempt($credentials)) {
+        // ✅ 管理者認証
+        if (Auth::guard('admin')->attempt($credentials, $request->boolean('remember'))) {
+            $request->session()->regenerate();
             return redirect()->route('admin.attendance.index');
         }
 
+        // 失敗時
         return back()->withErrors([
-            'email' => 'ログイン情報が登録されていません',
-        ]);
+            'email' => 'メールアドレスまたはパスワードが正しくありません。',
+        ])->withInput();
     }
 
-    public function logout()
+    public function logout(Request $request): RedirectResponse
     {
         Auth::guard('admin')->logout();
-        return redirect('/admin/login');
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('admin.login');
     }
 }

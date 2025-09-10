@@ -11,9 +11,9 @@
     <h2 class="page-title">勤怠一覧</h2>
 
     <div class="month-selector">
-        <a href="{{ route('attendance.index', ['month' => \Carbon\Carbon::parse($currentMonth)->subMonth()->format('Y-m')]) }}">← 前月</a>
+        <a href="{{ route('attendance.list', ['month' => \Carbon\Carbon::parse($currentMonth)->subMonth()->format('Y-m')]) }}">← 前月</a>
         <span class="current-month">{{ $currentMonth ?? '2023/06' }}</span>
-        <a href="{{ route('attendance.index', ['month' => \Carbon\Carbon::parse($currentMonth)->addMonth()->format('Y-m')]) }}">翌月 →</a>
+        <a href="{{ route('attendance.list', ['month' => \Carbon\Carbon::parse($currentMonth)->addMonth()->format('Y-m')]) }}">翌月 →</a>
     </div>
 
     <table class="attendance-table">

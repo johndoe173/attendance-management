@@ -3,14 +3,30 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\User; 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class StaffController extends Controller
 {
-    public function index()
+    /**
+     * スタッフ一覧（管理者）
+     */
+    public function index(Request $request)
     {
-        $staffs = User::all(); // 必要に応じて where('role', 'staff') なども追加
-        return view('admin.attendance.staff', compact('staffs'));
+        // 検索キーワードがあれば名前やメールで絞り込み
+        $query = User::query()
+            ->where('role', 'user'); // 役割で絞る（一般スタッフのみ）
+
+        if ($search = $request->input('search')) {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%");
+            });
+        }
+
+        // ページネーション
+        $staffs = $query->orderBy('name')->paginate(20);
+
+        return view('admin.staff.index', compact('staffs', 'search'));
     }
 }

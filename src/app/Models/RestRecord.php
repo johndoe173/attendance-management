@@ -20,4 +20,11 @@ class RestRecord extends Model
     'break_end',
     ];
 
+    public function getRestMinutesAttribute()
+    {
+        if ($this->break_start && $this->break_end) {
+            return \Carbon\Carbon::parse($this->break_start)->diffInMinutes($this->break_end);
+        }
+        return 0;
+    }
 }

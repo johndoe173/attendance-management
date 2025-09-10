@@ -8,6 +8,6 @@ class VerifyEmailViewResponse implements VerifyEmailViewResponseContract
 {
     public function toResponse($request)
     {
-        return view('auth.verify'); // ← Bladeビュー
+        return view('auth.verify');
     }
 }

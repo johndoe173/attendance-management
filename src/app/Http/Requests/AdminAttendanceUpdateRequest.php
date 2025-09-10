@@ -34,10 +34,14 @@ class AdminAttendanceUpdateRequest extends FormRequest
     {
         return [
             'start_time.required' => '出勤時間を入力してください',
+            'start_time.date_format' => '出勤時間は HH:MM 形式で入力してください',
             'end_time.required' => '退勤時間を入力してください',
-            'end_time.after' => '出勤時間もしくは退勤時間が不適切な値です',
+            'end_time.date_format' => '退勤時間は HH:MM 形式で入力してください',
+            'end_time.after' => '出勤時間より後の時刻を指定してください',
             'note.required' => '備考を記入してください',
+            'note.string' => '備考には文字列を入力してください',
         ];
     }
+
 
 }

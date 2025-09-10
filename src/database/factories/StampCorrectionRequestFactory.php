@@ -15,11 +15,14 @@ class StampCorrectionRequestFactory extends Factory
      */
     public function definition()
     {
+        $start = $this->faker->time('H:i');
+        $end = date('H:i', strtotime($start . ' +1 hour'));
+
         return [
             'user_id' => User::factory(),
             'attendance_id' => Attendance::factory(),
-            'requested_start_time' => $this->faker->time(),
-            'requested_end_time' => $this->faker->time(),
+            'requested_start_time' => $start,
+            'requested_end_time' => $end,
             'requested_note' => $this->faker->sentence(),
             'status' => $this->faker->randomElement(['承認待ち', '承認済み', '否認']),
         ];
